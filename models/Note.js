@@ -15,10 +15,7 @@ const noteSchema = new mongoose.Schema(
       enum: ['Work', 'Personal', 'Others'],
       default: 'Others',
     },
-    completed: {
-      type: Boolean,
-      default: false,
-    },
+  
   },
   { timestamps: true }
 );

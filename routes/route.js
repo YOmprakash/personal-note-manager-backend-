@@ -6,10 +6,10 @@ const Joi = require('joi');
 
 // Validation Schema
 const noteValidationSchema = Joi.object({
-  title: Joi.string().required(),
-  description: Joi.string().required(),
+  title: Joi.string(),
+  description: Joi.string(),
   category: Joi.string().valid('Work', 'Personal', 'Others'),
-  completed: Joi.boolean(),
+  
 });
 
 // Routes
@@ -41,6 +41,8 @@ router.post('/notes', async (req, res) => {
 });
 
 router.put('/notes/:id', async (req, res) => {
+  console.log('ID to Update:', req.params.id);
+console.log('Payload:', req.body);
   try {
     const { error } = noteValidationSchema.validate(req.body);
     if (error) return res.status(400).json({ message: error.details[0].message });
